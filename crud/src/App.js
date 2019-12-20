@@ -1,26 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
+import {Route} from 'react-router-dom';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Comment from './components/Comment';
+import CommentList from './components/CommentList';
+import SavedCommentsList from './components/SavedCommentsList';
+
+class App extends React.Component {
+    constructor() {
+      super()
+      this.state = {
+        savedList: [],
+        commentInList: null
+      };
+    }
+
+  addToSavedList = comment => {
+    const savedList = this.state.savedList;
+    const findComment = this.savedList.find
+      (el => comment.id === el.id);
+
+      if (findComment) {
+        this.setSate ({commentInList : `You've already saved that comment!` });
+        setTimeout(() => this.setState ({commentInList: null}), 2000);
+      } else {
+        savedList.push(comment);
+      }
+
+        this.setState({savedList})
+  };
+
+  render () {
+    const {commentInList} = this.state;
+    return (
+      <div>
+        {commentInList !==null ? (
+          <h2 className = "saved-warning">{commentInList}</h2>
+        ) :null}
+
+        <SavedCommentsList list = {this.state.savedList} />
+        <Route exact path = '/' component = {CommentList} />
+
+        <Route path = '/users/:id'
+          render = {props => (
+            <Comment {...props} addToSavedList = {this.addToSavedList} />
+          )}
+          />
+    
+      </div>
+    );
+  };
 }
+
 
 export default App;

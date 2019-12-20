@@ -1,4 +1,4 @@
-import React, {useState, useEffect} with 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {useParams} from 'react-router-dom';
 import CommentCard from './CommentCard';
@@ -19,8 +19,10 @@ const Comment = (props) => {
     },[]);
 
     if(!comment) {
-        return
-            <div>Loading comments ...</div>;
+        return (
+            <div><h3>Loading comments ...</h3></div>
+        )
+            
     }
 
     return (

@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-    margin-left: 45%;
+    margin-left: 25%;
     padding:1%;
 `
 
@@ -39,7 +39,6 @@ return (
             placeholder="Search"
             value={query} 
             onChange={handleInputChange}/>
-
 
 
     <Link to="/"><button>Home</button></Link>

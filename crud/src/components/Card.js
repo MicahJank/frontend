@@ -20,16 +20,12 @@ const Card = (props) => {
          <>
     
           <WrapperDiv className="cards">
-            {/* <Container>
-            <img src={character.image} alt ="character"/>
-            </Container> */}
             <h2>Name:{props.name}</h2>
             <p>Species: {props.species}</p>
             <p>Status: {props.status}</p>
             <p>Location: {props.location}</p>
         
           </WrapperDiv>
-          {/* <SearchForm /> */}
           </>
         );
        }

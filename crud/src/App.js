@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navigation from './components/Navigation.js';
+import styled from "styled-components"
 
-function App() {
+
+const WrapperDiv = styled.div`
+width: 16.5%;
+margin-left: 43%;
+ box-shadow: 5px 5px 5px black;
+`;
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <section className = "welcome-page">
+      <Navigation /> 
+          <header>
+            <h1><center>Comment Trolls!</center></h1>
+            <h3><center><em>Where Comments are Salty & Lemons Can't be Found</em></center></h3>
+          </header>
+
+          <WrapperDiv className = "welcome-ds">
+            <img className ="main-img"
+              src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="rick" />
+          </WrapperDiv>
+          
+      </section>
+
+        {/* <Navigation />  */}
+        {/* <AppRouter /> */}
+    </>
   );
 }
-
 export default App;

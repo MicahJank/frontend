@@ -25,7 +25,7 @@ class Registration extends React.Component() {
     login = event => {
         event.preventDefault();
         axiosWIthAuth()
-            .post('/register', this.state.credentials)
+            .post('https://hacker-news-troll.herokuapp.com/api/register', this.state.credentials)
             .then(response => {
                 console.log('kd:registration:login:axios:then', response.data)
                 localStorage.setItem('token', response.data.token);

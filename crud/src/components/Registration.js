@@ -1,10 +1,10 @@
 import React from 'react';
-import {axiosWIthAuth} from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import {withRouter} from 'react-router-dom';
-import {Wrapper, Form, Input, Button} from './styles/RegisterStyles.js'; 
+import {Wrapper, Form, Input, Button} from './styles/RegistrationStyles'; 
 
 
-class Registration extends React.Component() {
+class Registration extends React.Component {
     state = {
         credentials: {
             name: '',
@@ -24,7 +24,7 @@ class Registration extends React.Component() {
 
     login = event => {
         event.preventDefault();
-        axiosWIthAuth()
+        axiosWithAuth()
             .post('https://hacker-news-troll.herokuapp.com/api/register', this.state.credentials)
             .then(response => {
                 console.log('kd:registration:login:axios:then', response.data)
@@ -54,7 +54,7 @@ class Registration extends React.Component() {
                         <br></br>
 
                     <Input
-                        type = 'text'
+                        type = 'email'
                         name = 'email'
                         value = {this.state.credentials.email}
                         onChange = {this.handleChange}

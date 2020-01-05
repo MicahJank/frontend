@@ -20,9 +20,10 @@ const Card = (props) => {
          <>
     
           <WrapperDiv className="cards">
-            <h2>UserName:{props.name}</h2>
-            <p>Comment: {props.comment}</p>
-            <p>Score: {props.score}</p>
+            <h2>Name:{props.name}</h2>
+            <p>Species: {props.species}</p>
+            <p>Status: {props.status}</p>
+            <p>Location: {props.location}</p>
         
           </WrapperDiv>
           </>

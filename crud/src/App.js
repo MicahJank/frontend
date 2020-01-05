@@ -1,13 +1,14 @@
 import React from "react";
-import Navigation from './components/Navigation.js';
-import styled from "styled-components"
+import Navigation from './components/Navigation';
+import Registration from './components/Registration';
+// import styled from "styled-components"
 
 
-const WrapperDiv = styled.div`
-width: 16.5%;
-margin-left: 43%;
- box-shadow: 5px 5px 5px black;
-`;
+// const WrapperDiv = styled.div`
+// width: 16.5%;
+// margin-left: 43%;
+//  box-shadow: 5px 5px 5px black;
+// `;
 
 
 const App = () => {
@@ -20,10 +21,12 @@ const App = () => {
             <h3><center><em>Where Comments are Salty & Lemons Can't be Found</em></center></h3>
           </header>
 
-          <WrapperDiv className = "welcome-ds">
+          <Registration />
+
+          {/* <WrapperDiv className = "welcome-ds">
             <img className ="main-img"
               src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="rick" />
-          </WrapperDiv>
+          </WrapperDiv> */}
           
       </section>
 

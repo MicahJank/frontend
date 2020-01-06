@@ -35,7 +35,7 @@ export default function Login(props) {
             type="password"
           />
         </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
+        <Button class="login" block bsSize="large" disabled={!validateForm()} type="submit">
           Login
         </Button>
       </form>

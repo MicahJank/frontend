@@ -7,6 +7,7 @@ import SearchForm from './SearchForm';
 const Wrapper = styled.div`
   margin-top: 5%;
   margin: 0 auto;
+  
 `
 
 function List() {

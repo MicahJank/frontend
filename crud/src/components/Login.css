@@ -28,12 +28,5 @@
         padding-bottom: 20px;
         align-items: center;
     }
-
-    button {
-        color: black;
-        font-weight: bold;
-        width: 100px;
-        height: 30px;
-        border-radius: 15px;
-    }
+    
 }

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+// import styled from 'styled-components';
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "./Login.css";
+
+
 
 export default function Login(props) {
   const [email, setEmail] = useState("");
@@ -35,9 +38,11 @@ export default function Login(props) {
             type="password"
           />
         </FormGroup>
+        {/* <ButtonStyle> */}
         <Button class="login" block bsSize="large" disabled={!validateForm()} type="submit">
           Login
         </Button>
+        {/* </ButtonStyle> */}
       </form>
     </div>
   );

@@ -28,5 +28,11 @@
         padding-bottom: 20px;
         align-items: center;
     }
-    
+
+    .btn {
+      font-weight: bold;
+      color: black;
+      border-radius: 15px;
+      height: 30px;
+    }
 }

@@ -1,21 +1,20 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import styled from "styled-components";
+import SaltFeed from './SaltFeed';
 import List from './List';
 
 const WrapperDiv = styled.div `
-display:flex;
-flex-direction: column;
-// justify-content: space-around;
-align-items: center;
-padding-bottom: 5%;
-font-family: The Wild Hammers;
-font-size: 20px;
-font-weight: bold;
+display: flex;
+justify-content: center;
+justify-content: space-evenly;
+font-size: 3rem;
+border-bottom: 2px solid black;
+padding-bottom: 20px;
 `
 
 const Container = styled.div`
-width: 50%;
+width: 100%;
 display:flex;
 flex-direction: row;
 justify-content: space-around;
@@ -26,12 +25,13 @@ const Navigation = () => {
   return (
     <>
     <WrapperDiv className = "NavWrap">
-          <Link to ="/">Home</Link>
-          <Link to ="/characters">Characters </Link>
+          <Link to ="/" style={{ textDecoration: 'none', color: 'black' }}>Salt Feed</Link>
+          <Link to ="/characters" style={{ textDecoration: 'none' , color: 'black' }}>User Search </Link>
     </WrapperDiv>
 
     <Container>
           <Route path ='/characters' component = {List} />
+          <Route exact path ='/'component = {SaltFeed} />
     </Container>
           </>
    

@@ -6,6 +6,7 @@ import SearchForm from './SearchForm';
 
 const Wrapper = styled.div`
   margin-top: 5%;
+  margin: 0 auto;
 `
 
 function List() {
@@ -13,7 +14,7 @@ function List() {
   useEffect(() => {
     
   axios
-     .get('https://rickandmortyapi.com/api/character/')
+     .get('')
      .then((response) => {
        setCharacter(response.data.results);
        console.log(response);
@@ -32,13 +33,13 @@ function List() {
 
       <div className="character-list">
 
-      {character.map(index => (
+      {/* {character.map(index => (
              <Card  
                 key={index.id} 
                 name={index.name}
                 species={index.species} 
                 status={index.status} />
-      ))}
+      ))} */}
       </div>
      </>
 

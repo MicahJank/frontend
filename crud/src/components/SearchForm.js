@@ -9,8 +9,6 @@ const Wrapper = styled.div`
     padding:1%;
 `
 
-
-
 export default function SearchForm() {
     const [data, setData] = useState([]);
     const [query, setQuery] = useState("");
@@ -40,8 +38,7 @@ return (
             value={query} 
             onChange={handleInputChange}/>
 
-
-    <Link to="/"><button>Home</button></Link>
+        <button type="submit">Submit</button>
     </form>
     </Wrapper>
 
@@ -50,8 +47,8 @@ return (
             <Card 
                 key={character.id} 
                 name={character.name} 
-                species={character.species} 
-                status={character.status}
+                comment={character.comment} 
+                toxicity={character.toxicity}
             />)
     }))}
 

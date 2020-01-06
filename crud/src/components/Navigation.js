@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import styled from "styled-components";
 import SaltFeed from './SaltFeed';
+import Login from './Login';
 import List from './List';
 
 const WrapperDiv = styled.div `
@@ -27,11 +28,13 @@ const Navigation = () => {
     <WrapperDiv className = "NavWrap">
           <Link to ="/" style={{ textDecoration: 'none', color: 'black' }}>Salt Feed</Link>
           <Link to ="/characters" style={{ textDecoration: 'none' , color: 'black' }}>User Search </Link>
+          <Link to ="/login" style={{ textDecoration: 'none' , color: 'black' }}>Login </Link>
     </WrapperDiv>
 
     <Container>
           <Route path ='/characters' component = {List} />
           <Route exact path ='/'component = {SaltFeed} />
+          <Route path="/login" exact component={Login} />
     </Container>
           </>
    

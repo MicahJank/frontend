@@ -12,13 +12,27 @@ const WrapperDiv = styled.div`
 `;
 
 
-const App = () => {
+
+function App() {
   return (
-    <>
-      <section className = "welcome-page">
-      <Navigation /> 
-      </section>
-    </>
+    <Router>
+    <div className="App">
+
+      <h1 className="pageTitle">BucketArr</h1>
+        <Switch>
+          <PrivateRoute path="/" component={Login} />
+          <Route component={Login} />
+          <Route component={Registration}/>
+        </Switch>
+    </div>
+    </Router>
   );
 }
+
+          {/* <WrapperDiv className = "welcome-ds">
+            <img className ="main-img"
+              src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="rick" />
+          </WrapperDiv> */}
+          
+  
 export default App;

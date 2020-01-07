@@ -7,6 +7,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     margin-left: 25%;
     padding:1%;
+    margin-top: 20px;
 `
 
 export default function SearchForm() {

@@ -1,17 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import Navigation from './components/Navigation';
-import Registration from './components/Registration';
-import PrivateRoute from './components/PrivateRoute.js';
-import Login from './components/Login.js';
-// import styled from "styled-components"
+import Navigation from './components/Navigation.js';
+import styled from "styled-components"
+import Login from "./components/Login";
+// import Card from './components/Card';
+// import SaltFeed from './components/SaltFeed';
+import { Route } from "react-router-dom";
 
 
-// const WrapperDiv = styled.div`
-// width: 16.5%;
-// margin-left: 43%;
-//  box-shadow: 5px 5px 5px black;
-// `;
+const WrapperDiv = styled.div`
+  
+`;
 
 
 

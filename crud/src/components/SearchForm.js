@@ -7,9 +7,8 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     margin-left: 25%;
     padding:1%;
+    margin-top: 20px;
 `
-
-
 
 export default function SearchForm() {
     const [data, setData] = useState([]);
@@ -40,8 +39,7 @@ return (
             value={query} 
             onChange={handleInputChange}/>
 
-
-    <Link to="/"><button>Home</button></Link>
+        <button type="submit">Submit</button>
     </form>
     </Wrapper>
 
@@ -50,8 +48,8 @@ return (
             <Card 
                 key={character.id} 
                 name={character.name} 
-                species={character.species} 
-                status={character.status}
+                comment={character.comment} 
+                toxicity={character.toxicity}
             />)
     }))}
 

@@ -63,7 +63,9 @@ class Registration extends React.Component {
                     <Button 
                         type = 'submit'
                         >Register
-                        </Button>
+                    </Button>
+
+                    <h3>Already a member? Login</h3>
 
                 </Form>
             </Wrapper>

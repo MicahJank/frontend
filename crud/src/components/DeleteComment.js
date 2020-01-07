@@ -9,9 +9,11 @@ function DeleteComment () {
         <>
             {comments.map (comment => (
                 <div>
-                    <h3>Username: {comment.username}</h3>
+                    {/* <h3>Username: {comment.username}</h3>
                     <br></br>
-                    <h3>Score: {comment.score}</h3>
+                    <h3>Score: {comment.score}</h3> */}
+
+                    <h2>Comment id: {comment.id}</h2>
 
                     <button className = 'remove-comment-btn'
                         onClick = {() => deleteComment (comment.id)}

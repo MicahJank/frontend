@@ -1,11 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 // import Navigation from './components/Navigation';
 import Registration from './components/Registration';
 import PrivateRoute from './components/PrivateRoute.js';
 import Login from './components/Login.js';
 import Dashboard from './components/Dashboard.js';
+import Navigation from './components/Navigation.js';
+
+import './App.css';
 
 
 // import styled from "styled-components"
@@ -19,16 +22,15 @@ import Dashboard from './components/Dashboard.js';
 
 function App() {
   return (
-    <Router>
     <div className="App">
-      <h1 className="pageTitle">BucketArr</h1>
+      
+      <PrivateRoute path={['/dashboard', '/search', '/saved']} component={Navigation} /> 
         <Switch>
           <Route exact path="/" component={Registration}/>
           <Route path="/login" component={Login} />
           <PrivateRoute path="/dashboard" component={Dashboard} /> 
         </Switch>
     </div>
-    </Router>
   );
 }
 

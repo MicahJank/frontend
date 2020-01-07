@@ -26,9 +26,10 @@ const Navigation = () => {
   return (
     <>
     <WrapperDiv className = "NavWrap">
-          <Link to ="/" style={{ textDecoration: 'none', color: 'black' }}>Salt Feed</Link>
-          <Link to ="/characters" style={{ textDecoration: 'none' , color: 'black' }}>User Search </Link>
+          <Link to ="/dashboard" style={{ textDecoration: 'none', color: 'black' }}>Salt Feed</Link>
+          <Link to ="/search" style={{ textDecoration: 'none' , color: 'black' }}>User Search </Link>
           <Link to ="/login" style={{ textDecoration: 'none' , color: 'black' }}>Login </Link>
+          <Link to ="/saved" style={{ textDecoration: 'none' , color: 'black' }}>Saved </Link>
     </WrapperDiv>
 
     <Container>

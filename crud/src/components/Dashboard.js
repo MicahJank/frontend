@@ -7,7 +7,9 @@ import SearchForm from './SearchForm.js';
 const Dashboard = () => {
 
     return (
+        <>
         <SaltFeed />
+        </>
     )
 }
 

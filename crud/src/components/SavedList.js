@@ -5,7 +5,7 @@ const SavedList = props => (
   <div className="saved-list">
     <h3>Saved Comments:</h3>
     {props.list.map(comment => (
-      <span className="saved-movie">{comment.username}</span>
+      <span className="saved-comment">{comment.username}</span>
     ))}
     <Link to='/'><div className="home-button">Home</div></Link>
   </div>

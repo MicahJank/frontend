@@ -1,6 +1,9 @@
 import React from "react";
-import Navigation from './components/Navigation';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import Navigation from './components/Navigation';
 import Registration from './components/Registration';
+import PrivateRoute from './components/PrivateRoute.js';
+import Login from './components/Login.js';
 // import styled from "styled-components"
 
 
@@ -11,28 +14,27 @@ import Registration from './components/Registration';
 // `;
 
 
-const App = () => {
-  return (
-    <>
-      <section className = "welcome-page">
-      <Navigation /> 
-          <header>
-            <h1><center>Comment Trolls!</center></h1>
-            <h3><center><em>Where Comments are Salty & Lemons Can't be Found</em></center></h3>
-          </header>
 
-          <Registration />
+function App() {
+  return (
+    <Router>
+    <div className="App">
+
+      <h1 className="pageTitle">BucketArr</h1>
+        <Switch>
+          <PrivateRoute path="/" component={Login} />
+          <Route component={Login} />
+          <Route component={Registration}/>
+        </Switch>
+    </div>
+    </Router>
+  );
+}
 
           {/* <WrapperDiv className = "welcome-ds">
             <img className ="main-img"
               src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="rick" />
           </WrapperDiv> */}
           
-      </section>
-
-        {/* <Navigation />  */}
-        {/* <AppRouter /> */}
-    </>
-  );
-}
+  
 export default App;

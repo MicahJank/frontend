@@ -7,16 +7,15 @@ import {Wrapper, Form, Input, Button} from './styles/RegistrationStyles';
 class Registration extends React.Component {
     state = {
         credentials: {
-            name: '',
-            email: '', 
+            username: '',
             password: ''
         }
     }; 
 
-    handleChange = event => {
+    handleChange = event => {    
         this.setState ({
             credentials: {
-                ...this.setState.credentials,
+                ...this.state.credentials,
                 [event.target.name]: event.target.value
             }
         });
@@ -25,48 +24,41 @@ class Registration extends React.Component {
     login = event => {
         event.preventDefault();
         axiosWithAuth()
-            .post('https://hacker-news-troll.herokuapp.com/api/register', this.state.credentials)
+            .post('/register', this.state.credentials)
             .then(response => {
                 console.log('kd:registration:login:axios:then', response.data)
                 localStorage.setItem('token', response.data.token);
-                this.props.history.push('/login');
+                // this.props.history.push('/login');
                 this.setState ({ credentials: {
-                    name: '',
-                    email: '',
+                    username: '',
                     password: ''
                 }});
             })
                 .catch (error => console.log ('kd:registration:login:axios.catch', error));
     };
 
+    
+
     render() {
+        
         return (
             <Wrapper>
                 <Form onSubmit = {this.login}>
                     <Input
                         type = 'text'
-                        name = 'name'
-                        value = {this.state.credentials.name}
+                        name = 'username'
+                        value = {this.state.credentials.username || ''}
                         onChange = {this.handleChange}
-                        placeholder = '* name'
+                        placeholder = '* username'
                         />
 
                         <br></br>
 
-                    <Input
-                        type = 'email'
-                        name = 'email'
-                        value = {this.state.credentials.email}
-                        onChange = {this.handleChange}
-                        placeholder = '* email'
-                        />
-
-                        <br></br>
 
                     <Input
                         type = 'password'
                         name = 'password'
-                        value = {this.state.credentials.password}
+                        value = {this.state.credentials.password || ''}
                         onChange = {this.handleChange}
                         placeholder = '* password'
                         />

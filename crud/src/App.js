@@ -31,10 +31,7 @@ function App() {
   );
 }
 
-          {/* <WrapperDiv className = "welcome-ds">
-            <img className ="main-img"
-              src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="rick" />
-          </WrapperDiv> */}
+         
           
   
 export default App;

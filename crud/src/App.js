@@ -1,35 +1,40 @@
 import React from "react";
-import Navigation from './components/Navigation.js';
-import styled from "styled-components"
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import Navigation from './components/Navigation';
+import Registration from './components/Registration';
+import PrivateRoute from './components/PrivateRoute.js';
+import Login from './components/Login.js';
+// import styled from "styled-components"
 
 
-const WrapperDiv = styled.div`
-width: 16.5%;
-margin-left: 43%;
- box-shadow: 5px 5px 5px black;
-`;
+// const WrapperDiv = styled.div`
+// width: 16.5%;
+// margin-left: 43%;
+//  box-shadow: 5px 5px 5px black;
+// `;
 
 
-const App = () => {
+
+function App() {
   return (
-    <>
-      <section className = "welcome-page">
-      <Navigation /> 
-          <header>
-            <h1><center>Comment Trolls!</center></h1>
-            <h3><center><em>Where Comments are Salty & Lemons Can't be Found</em></center></h3>
-          </header>
+    <Router>
+    <div className="App">
 
-          <WrapperDiv className = "welcome-ds">
-            <img className ="main-img"
-              src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="rick" />
-          </WrapperDiv>
-          
-      </section>
-
-        {/* <Navigation />  */}
-        {/* <AppRouter /> */}
-    </>
+      <h1 className="pageTitle">BucketArr</h1>
+        <Switch>
+          <PrivateRoute path="/" component={Login} />
+          <Route component={Login} />
+          <Route component={Registration}/>
+        </Switch>
+    </div>
+    </Router>
   );
 }
+
+          {/* <WrapperDiv className = "welcome-ds">
+            <img className ="main-img"
+              src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="rick" />
+          </WrapperDiv> */}
+          
+  
 export default App;

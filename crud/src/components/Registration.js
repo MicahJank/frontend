@@ -1,7 +1,7 @@
 import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {withRouter} from 'react-router-dom';
-import {Wrapper, Form, Input, Button, Container} from './styles/RegistrationStyles'; 
+import {Wrapper, Form, Input, Button, Container} from '../styles/RegistrationStyles'; 
 
 
 class Registration extends React.Component {

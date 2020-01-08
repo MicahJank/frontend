@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import CommentContext from './components/CommentContext';
+import SaveComment from './components/SaveComment';
+import SaltFeed from './components/SaltFeed'
 
 import PrivateRoute from './components/PrivateRoute.js';
 import Login from './components/Login.js';
 import Registration from './components/Registration';
-import axiosWithAuth from "./utils/axiosWithAuth";
+import axiosWithAuth from './utils/axiosWithAuth';
 
 // import styled from "styled-components"
 
@@ -34,9 +36,9 @@ function App() {
         <CommentContext.Provider value={{comments,deleteComment}}>
         <div className="App">
 
-          <h1 className="pageTitle">BucketArr</h1>
             <Switch>
-              <PrivateRoute path="/" component={Login} />
+              <Route path = '/crud' component ={SaveComment} />
+              <PrivateRoute path="/" component={SaltFeed} />
               <Route component={Login} />
               <Route component={Registration}/>
             </Switch>

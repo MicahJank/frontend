@@ -28,6 +28,7 @@ class Registration extends React.Component {
             .then(response => {
                 console.log('kd:registration:login:axios:then', response.data)
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('username', response.data.created_user.username); // when we register we can grab the users current username and send it to local storage to dsiplay in the app when we want
                 this.props.history.push('/dashboard'); // after the user registers it makes more sense for them to get directed straight to the dashboard rather than the login correct?
                 this.setState ({ credentials: {
                     username: '',

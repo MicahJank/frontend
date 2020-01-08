@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from 'react-router-dom';
 
 // import Navigation from './components/Navigation';
@@ -7,6 +7,10 @@ import PrivateRoute from './components/PrivateRoute.js';
 import Login from './components/Login.js';
 import Dashboard from './components/Dashboard.js';
 import Navigation from './components/Navigation.js';
+
+import CommentContext from './components/CommentContext';
+import SaveComment from './components/SaveComment';
+import axiosWithAuth from './utils/axiosWithAuth';
 
 import './App.css';
 

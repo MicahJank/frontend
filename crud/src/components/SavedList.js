@@ -1,14 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
 
-const SavedList = props => (
+import axiosWithAuth from '../utils/axiosWithAuth.js'
+
+// TODO: SavedList need to GET and then display the saved list from the backend API (look at backend readme for details)
+const SavedList = () => {
+  const [savedComments, setSavedComments] = useState([]);
+
+  useEffect(() => {
+    // GET the saved list here
+  }, [])
+
+return (
+  // Data from savedComments would need to be mapped over and displayed somehow in this return
   <div className="saved-list">
     <h3>Saved Comments:</h3>
-    {props.list.map(comment => (
-      <span className="saved-comment">{comment.username}</span>
-    ))}
-    <Link to='/'><div className="home-button">Home</div></Link>
   </div>
 );
+
+}
 
 export default SavedList;

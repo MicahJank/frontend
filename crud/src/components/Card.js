@@ -31,10 +31,11 @@ const Card = (props) => {
     comment = props.comment;
   }
 
+  // TODO: Save button should save the comment to the backend api (look at backend README for endpoint routes)
   return (
           <div className='carousel-card'>
-            <h2>Username: {props.name}</h2>
-            <p>Comment: {comment}</p>
+            <h2>{props.name}</h2>
+            <p>{comment}</p>
             <p>Toxicity Score: {props.toxicity}</p>
             <ButtonBox>
             <button>Save Comment</button>

@@ -5,40 +5,28 @@ const initialUser= {
     username: '',
 }
 
-function UpdateUsername() {
-
+function UpdateUsername(props) {
     const [user, setUser] = useState(initialUser);
-
-    // const {match, users} = props;
-    // useEffect (() => {
-    //     const username = match.params.username;
-    //     const userToUpdate = users.find(item => `${item.username}` === username);
-        
-    //     if (userToUpdate) {
-    //         setUser(userToUpdate);
-    //     }
-    // }, [match, users]);
 
     const changeHandler = event => {
         event.persist();
         let value = event.target.value;
 
-        // setUser({
-        //     ...users, 
-        //     [event.target.name] : value
-        // })
+        setUser({
+            ...user, 
+            [event.target.name] : value
+        })
     }
 
     const handleSubmit = event => {
         event.preventDefault();
         axiosWithAuth()
-            .put(`https://hacker-news-troll.herokuapp.com/api/users`, user) // axiosWithAuth is already using the base URL so you should only need /users
+            .put(`/users`, user)
             .then (response => {
-                console.log(response)
+                props.setCurrentUser(response.data.username);
                 setUser(initialUser)
-                // props.history.push('/')
             })
-            .catch(error => {console.log(error)})
+            .catch(error => {console.log(error.message)})
     }
 
     return (

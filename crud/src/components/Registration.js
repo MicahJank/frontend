@@ -1,14 +1,13 @@
 import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {withRouter} from 'react-router-dom';
-import {Wrapper, Form, Input, Button} from './styles/RegistrationStyles'; 
+import {Wrapper, Form, Input, Button, Container} from '../styles/RegistrationStyles'; 
 
 
 class Registration extends React.Component {
     state = {
         credentials: {
-            name: '',
-            email: '', 
+            username: '',
             password: ''
         }
     }; 
@@ -31,8 +30,7 @@ class Registration extends React.Component {
                 localStorage.setItem('token', response.data.token);
                 this.props.history.push('/login');
                 this.setState ({ credentials: {
-                    name: '',
-                    email: '',
+                    username: '',
                     password: ''
                 }});
             })
@@ -45,20 +43,10 @@ class Registration extends React.Component {
                 <Form onSubmit = {this.login}>
                     <Input
                         type = 'text'
-                        name = 'name'
-                        value = {this.state.credentials.name}
+                        name = 'username'
+                        value = {this.state.credentials.username}
                         onChange = {this.handleChange}
-                        placeholder = '* name'
-                        />
-
-                        <br></br>
-
-                    <Input
-                        type = 'email'
-                        name = 'email'
-                        value = {this.state.credentials.email}
-                        onChange = {this.handleChange}
-                        placeholder = '* email'
+                        placeholder = '* Username'
                         />
 
                         <br></br>
@@ -75,7 +63,14 @@ class Registration extends React.Component {
                     <Button 
                         type = 'submit'
                         >Register
-                        </Button>
+                    </Button>
+                    <hr></hr>
+                    <Container>
+                        <h3>Already a member?</h3>
+                        <button>Login</button>
+                    </Container>
+                   
+                    
 
                 </Form>
             </Wrapper>

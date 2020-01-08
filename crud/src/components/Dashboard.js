@@ -8,6 +8,9 @@ const Dashboard = () => {
 
     return (
         <>
+        <div className = "update-section">
+                <UpdateUsername /> 
+        </div>
         <SaltFeed />
         </>
     )

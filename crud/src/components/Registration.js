@@ -1,7 +1,7 @@
 import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {withRouter} from 'react-router-dom';
-import {Wrapper, Form, Input, Button} from './styles/RegistrationStyles'; 
+import {Wrapper, Form, Input, Button, Container} from '../styles/RegistrationStyles'; 
 
 
 class Registration extends React.Component {
@@ -67,7 +67,14 @@ class Registration extends React.Component {
                     <Button 
                         type = 'submit'
                         >Register
-                        </Button>
+                    </Button>
+                    <hr></hr>
+                    <Container>
+                        <h3>Already a member?</h3>
+                        <button>Login</button>
+                    </Container>
+                   
+                    
 
                 </Form>
             </Wrapper>

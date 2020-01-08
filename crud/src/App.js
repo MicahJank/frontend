@@ -19,25 +19,37 @@ import './App.css';
 // `;
 
 
+// const WrapperDiv = styled.div`
+// width: 16.5%;
+// margin-left: 43%;
+//  box-shadow: 5px 5px 5px black;
+// `;
 
 function App() {
-  return (
-    <div className="App">
-      
-      <PrivateRoute path={['/dashboard', '/search', '/saved']} component={Navigation} /> 
-        <Switch>
-          <Route exact path="/" component={Registration}/>
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/dashboard" component={Dashboard} /> 
-        </Switch>
-    </div>
-  );
-}
+  const [comments, setComments]= useState ([])
 
-          {/* <WrapperDiv className = "welcome-ds">
-            <img className ="main-img"
-              src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="rick" />
-          </WrapperDiv> */}
-          
+  const deleteComment = commentId => {
+    axiosWithAuth()
+      .delete(`/api/comments/${commentId}`)
+      .then (response => {
+        setComments(comments.filter (data => data.id !==comments.id, response));
+      })
+      .catch(error=> console.log(error))
+  };
+
+  return (
+    <CommentContext.Provider value={{comments,deleteComment}}>
+      <div className="App">
+        <PrivateRoute path={['/dashboard', '/search', '/saved']} component={Navigation} /> 
+          <Switch>
+            <Route path = '/crud' component ={SaveComment} />
+            <Route exact path="/" component={Registration}/>
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/dashboard" component={Dashboard} /> 
+          </Switch>
+      </div>
+    </CommentContext.Provider>
+  );
+}     
   
 export default App;

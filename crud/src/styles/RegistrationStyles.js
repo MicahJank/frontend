@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
     background: #a49989;
     display: flex;
-    width: 60%;
+    width: 40%;
     align-items: center;
     margin: 0 auto;
 
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 60%;
     padding: 20px 0;
     align-items: center;
 `;
@@ -48,9 +48,16 @@ const Button = styled.button`
     }
 `;
 
+const Container = styled.div`
+    background-color: lightblue;
+    width:30%;
+    border:.5px solid black;
+`
+
 export {
     Wrapper,
     Form,
     Input,
-    Button
+    Button,
+    Container
 }

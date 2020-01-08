@@ -1,53 +1,24 @@
-import React, {useState, useEffect} from 'react';
-import {Route} from 'react-router-dom';
-import axiosWithAuth from './utils/axiosWithAuth';
-import SaltFeed from './components/SaltFeed';
-import SavedList from './components/SavedList';
-import UpdateUsername from './components/UpdateUsername';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 
-const Container = styled.div`
-    width: 75%;
-    background-color:slategrey;
-`
+import SaltFeed from './SaltFeed.js';
+import SearchForm from './SearchForm.js';
+import UpdateUsername from './UpdateUsername.js';
 
-function Dashboard () {
-    const [currentUser, setCurrentUser] = useState({});
-    
-    useEffect(() => {
-        axiosWithAuth()
-        .get('/user')
-        .then(response => {
-            console.log("User:", response);
-            setCurrentUser(response.data.username);
-        })
-        .catch(error => console.log(error))
-    }, [])
+// dashboard component is what should display things like the cards containing the DS api data
+const Dashboard = () => {
 
-    if (!currentUser.username){
-        return (
-            <h2>Loading User ... </h2>
-        )
-    }
     return (
         <>
-        <Container>
-            <div className = "dashboard-header">
-                <h1>Welcome to your Salty Comment Dashboard. {currentUser.username}</h1>
-            </div>
-
-            <div className = "update-section">
+        <div className = "update-section">
                 <UpdateUsername /> 
+        </div>
+        <div className = "dashboard-header">
+                <h1>Welcome to your Salty Comment Dashboard, USERNAME-HERE.</h1>
             </div>
-        </Container>
-       
-    <Route exact path ="/dashboard" 
-        render = {props => <SaltFeed {...props} 
-        username = {currentUser.username}/>}
-    />
-    <Route path = "/dashboard/savedlist" component = {SavedList} />
+        <SaltFeed />
         </>
     )
 }
 
-export default Dashboard; 
+
+export default Dashboard;

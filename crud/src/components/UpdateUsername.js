@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 const initialUser= {
     username: '',
 }
 
-function UpdateUsername(props) {
+function UpdateUsername() {
 
     const [user, setUser] = useState(initialUser);
 
@@ -32,7 +32,7 @@ function UpdateUsername(props) {
     const handleSubmit = event => {
         event.preventDefault();
         axiosWithAuth()
-            .put(`https://hacker-news-troll.herokuapp.com/api/users/${user.username}`, user) // axiosWithAuth is already using the base URL so you should only need /users
+            .put(`https://hacker-news-troll.herokuapp.com/api/users`, user) // axiosWithAuth is already using the base URL so you should only need /users
             .then (response => {
                 console.log(response)
                 setUser(initialUser)

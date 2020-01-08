@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import axiosWithAuth from './utils/axiosWithAuth';
 // import SearchForm from './SearchForm';
 
 /*
@@ -31,6 +32,23 @@ const Card = (props) => {
     comment = props.comment;
   }
 
+  const handleSave = () => {
+    let commentInfo = {
+      troll_username: props.name,
+      comment_toxicity: props.toxicity,
+      comment: comment
+    }
+
+    axiosWithAuth()
+    .post(`https://hacker-news-troll.herokuapp.com/api/comments`, commentInfo)
+    .then(response => {
+        console.log(response)
+    })
+    .catch(error => {
+        console.log(error)
+    })
+  }
+
   // TODO: Save button should save the comment to the backend api (look at backend README for endpoint routes)
   return (
           <div className='carousel-card'>
@@ -38,7 +56,10 @@ const Card = (props) => {
             <p>{comment}</p>
             <p>Toxicity Score: {props.toxicity}</p>
             <ButtonBox>
-            <button>Save Comment</button>
+            {/* <button>Save Comment</button> */}
+            <button className = 'save-comment-btn'
+                    onClick = {() => handleSave()}>Save Comment</button>
+
             <button>Share Comment</button>
             <button>Like</button>
             <button>Dislike</button>

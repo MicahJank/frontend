@@ -54,10 +54,22 @@ const Container = styled.div`
     border:.5px solid black;
 `
 
+const SubTitle = styled.p`
+    color: white;
+    font-size: 1.5rem;
+`;
+ const NavLink = styled.span`
+    color: lightblue;
+    `;
+
+
 export {
     Wrapper,
     Form,
     Input,
     Button,
-    Container
+    Container,
+    SubTitle,
+    NavLink
+
 }

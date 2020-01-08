@@ -6,7 +6,7 @@ const axiosWithAuth = () => {
     return axios.create ({
         baseURL: 'https://hacker-news-troll.herokuapp.com/api', 
         headers: {
-            Authorization: token
+            Authorization: `Bearer ${token}`,
         } 
    })
 }

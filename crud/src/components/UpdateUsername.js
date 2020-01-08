@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const initialUser= {
     username: '',
@@ -31,7 +31,7 @@ function UpdateUsername(props) {
 
     const handleSubmit = event => {
         event.preventDefault();
-        axios
+        axiosWithAuth()
             .put(`https://hacker-news-troll.herokuapp.com/api/users/${user.username}`, user)
             .then (response => {
                 console.log(response)

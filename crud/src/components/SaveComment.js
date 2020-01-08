@@ -34,11 +34,8 @@ function SaveComment () {
             
                 <Button className = "save-comments-btn"
                     onClick={() => onSubmit()}>Add To Saved List</Button>
-                
-
-
-                )
-        }
+            )
+}
   
 
 export default SaveComment; 

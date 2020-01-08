@@ -1,10 +1,19 @@
 import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import {withRouter} from 'react-router-dom';
-import {Wrapper, Form, Input, Button, Container} from '../styles/RegistrationStyles'; 
+import {withRouter, Link} from 'react-router-dom';
+import {
+    Wrapper, 
+    Form, 
+    Input, 
+    Button, 
+    Container,
+    SubTitle,
+    NavLink
+    } from '../styles/RegistrationStyles'; 
 
 
 class Registration extends React.Component {
+    
     state = {
         credentials: {
             username: '',
@@ -66,8 +75,7 @@ class Registration extends React.Component {
                     </Button>
                     <hr></hr>
                     <Container>
-                        <h3>Already a member?</h3>
-                        <button>Login</button>
+                        <SubTitle>Already registered? Click <Link to='/login'><NavLink>here</NavLink></Link> to login</SubTitle>
                     </Container>
                    
                     

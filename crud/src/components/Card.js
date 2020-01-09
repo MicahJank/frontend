@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import axiosWithAuth from './utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 // import SearchForm from './SearchForm';
 
 /*

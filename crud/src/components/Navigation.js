@@ -6,6 +6,7 @@ import Login from './Login';
 import List from './List';
 import UserSearch from './UserSearch.js';
 import HamburgerMenu from './HamburgerMenu.js';
+import SavedList from './SavedList';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +16,7 @@ display: flex;
 justify-content: center;
 justify-content: space-evenly;
 align-items: center;
-font-size: 3rem;
+font-size: 2rem;
 margin-top: 20px;
 border-bottom: 2px solid black;
 padding-bottom: 20px;
@@ -61,6 +62,7 @@ const Navigation = () => {
             <Route exact path ='/'component = {SaltFeed} />
             <Route path="/login" exact component={Login} />
             <Route path="/search" exact component={UserSearch} />
+            <Route path="/saved" exact component={SavedList} />
       </Container>
           </>
    

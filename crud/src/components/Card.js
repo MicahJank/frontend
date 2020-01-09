@@ -40,12 +40,12 @@ const Card = (props) => {
     }
 
     axiosWithAuth()
-    .post(`https://hacker-news-troll.herokuapp.com/api/comments`, commentInfo)
+    .post(`/comments`, commentInfo)
     .then(response => {
-        console.log(response)
+        console.log("comment saved", response)
     })
     .catch(error => {
-        console.log(error)
+        console.log("did not save comment",error)
     })
   }
 
@@ -57,13 +57,14 @@ const Card = (props) => {
             <p>Toxicity Score: {props.toxicity}</p>
             <ButtonBox>
             {/* <button>Save Comment</button> */}
-            <button className = 'save-comment-btn'
+            <button className = 'saved-comment-btn'
                     onClick = {() => handleSave()}>Save Comment</button>
 
             <button>Share Comment</button>
             <button>Like</button>
             <button>Dislike</button>
             </ButtonBox>
+            {/* <center><DeleteComment comment = {props.comment}/></center> */}
             
           </div>
         );

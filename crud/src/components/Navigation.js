@@ -8,8 +8,6 @@ import UserSearch from './UserSearch.js';
 import HamburgerMenu from './HamburgerMenu.js';
 import SavedList from './SavedList';
 
-import SavedList from './SavedList.js';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 

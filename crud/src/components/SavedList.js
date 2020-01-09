@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import axiosWithAuth from './utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth.js';
 import { Link } from 'react-router-dom';
-import DeleteComment from './components/DeleteComment';
+import DeleteComment from './DeleteComment.js';
 
 function SavedList () {
 
@@ -10,7 +10,7 @@ function SavedList () {
     useEffect (() => {
       const getSavedComments = () => {
         axiosWithAuth()
-        .get(`/api/comments`)
+        .get(`/comments`)
         .then (response => {
           setSavedComments(response.data);
         })

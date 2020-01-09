@@ -7,6 +7,8 @@ import List from './List';
 import UserSearch from './UserSearch.js';
 import HamburgerMenu from './HamburgerMenu.js';
 
+import SavedList from './SavedList.js';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -62,6 +64,7 @@ const Navigation = () => {
             <Route exact path ='/'component = {SaltFeed} />
             <Route path="/login" exact component={Login} />
             <Route path="/search" exact component={UserSearch} />
+            <Route path="/saved" exact component={SavedList} />
       </Container>
           </>
    

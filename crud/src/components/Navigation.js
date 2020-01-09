@@ -6,6 +6,7 @@ import Login from './Login';
 import List from './List';
 import UserSearch from './UserSearch.js';
 import HamburgerMenu from './HamburgerMenu.js';
+import SavedList from './SavedList';
 
 import SavedList from './SavedList.js';
 

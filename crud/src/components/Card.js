@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Card as UiCard, Icon, Image, Button, Label } from 'semantic-ui-react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 // import SearchForm from './SearchForm';
 
 /*
@@ -61,6 +62,23 @@ const Card = (props) => {
     setLikes(likes + 1);
   }
 
+  const handleSave = () => {
+    let commentInfo = {
+      troll_username: props.name,
+      comment_toxicity: props.toxicity,
+      comment: comment
+    }
+
+    axiosWithAuth()
+    .post(`/comments`, commentInfo)
+    .then(response => {
+        console.log("comment saved", response)
+    })
+    .catch(error => {
+        console.log("did not save comment",error)
+    })
+  }
+
   // TODO: Save button should save the comment to the backend api (look at backend README for endpoint routes)
   return (
     <Main>
@@ -74,7 +92,7 @@ const Card = (props) => {
               <UiCard.Description>{comment}</UiCard.Description>
           </UiCard.Content>
               <Button.Group>
-              <Button positive>Save</Button>
+              <Button onClick={() => handleSave()} positive>Save</Button>
               <Button color='twitter'><Icon name='twitter' /></Button>
               <Button as='div' labelPosition='right'>
                 <Button onClick={handleLikeButton} color='red'>

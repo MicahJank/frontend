@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from 'react';
-
+import React, {useState} from 'react';
+import styled from 'styled-components';
 import SaltFeed from './SaltFeed.js';
-import SearchForm from './SearchForm.js';
+// import SearchForm from './SearchForm.js';
 import UpdateUsername from './UpdateUsername.js';
+
+const Wrapper = styled.div`
+margin-top:3%;
+width:30%;
+border:1px solid grey;
+box-shadow: 5px 5px 5px black;
+margin-left:35%;
+`
 
 // dashboard component is what should display things like the cards containing the DS api data
 const Dashboard = () => {
@@ -10,12 +18,10 @@ const Dashboard = () => {
 
     return (
         <>
-        <div className = "update-section">
+        <Wrapper>
                 <UpdateUsername setCurrentUser={setCurrentUser} /> 
-        </div>
-        <div className = "dashboard-header">
-                <h1>Welcome to your Salty Comment Dashboard, {currentUser}.</h1>
-            </div>
+                <h4>Welcome to your Salty Comment Dashboard, {currentUser}.</h4>
+        </Wrapper>   
         <SaltFeed />
         </>
     )

@@ -1,11 +1,24 @@
 import styled from 'styled-components';
 
+const Header = styled.div`
+    margin-top:3%;
+    font-family: The Wild Hammers;
+    padding: 1%;
+    background-color: grey;
+    border-bottom: 2px solid #454245;
+    box-shadow: 5px 5px 5px black;
+`
+
 const Wrapper = styled.div`
     background: #a49989;
     display: flex;
-    width: 40%;
-    align-items: center;
+    width: 50%;
+    align-contents: center;
     margin: 0 auto;
+    margin-top:3%;
+    border-bottom: 2px solid #454245;
+    box-shadow: 5px 5px 5px black;
+    
 
     @media only screen and (max-width: 1024px) {
         width: 95%;
@@ -18,6 +31,7 @@ const Form = styled.form`
     width: 60%;
     padding: 20px 0;
     align-items: center;
+    margin-left:20%;
 `;
 
 const Input = styled.input`
@@ -32,10 +46,11 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-    padding: 5px;
+    padding: 3px;
     color: #e3e2e0;
-    border-radius: 8px;
-    border: 2px solid #e3e2e0;
+    border-radius:4px;
+    border: 2px solid black;
+    font-family:The Wild Hammers;
 
     margin: 10px;
     height: 35px;
@@ -49,15 +64,30 @@ const Button = styled.button`
 `;
 
 const Container = styled.div`
-    background-color: lightblue;
-    width:30%;
+    background-color: grey;
+    width:100%;
     border:.5px solid black;
+    align-items:center;
 `
 
+const SubTitle = styled.p`
+    color: black;
+    font-size: 1.4rem;
+
+`;
+ const NavLink = styled.span`
+    color: darkblue;
+    `;
+
+
 export {
+    Header,
     Wrapper,
     Form,
     Input,
     Button,
-    Container
+    Container,
+    SubTitle,
+    NavLink
+
 }

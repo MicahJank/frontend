@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import axiosWithAuth from '../utils/axiosWithAuth';
-import DeleteComment from './DeleteComment';
 // import SearchForm from './SearchForm';
 
 /*

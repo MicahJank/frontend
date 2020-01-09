@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute.js';
 import Login from './components/Login.js';
 import Dashboard from './components/Dashboard.js';
 import Navigation from './components/Navigation.js';
+// import SavedList from './components/SavedList';
 
 import CommentContext from './components/CommentContext';
 import SaveComment from './components/SaveComment';
@@ -30,25 +31,27 @@ import './App.css';
 // `;
 
 function App() {
-  const [comments, setComments]= useState ([])
+  const [comments]= useState ([])
 
-  const deleteComment = commentId => {
-    axiosWithAuth()
-      .delete(`/api/comments/${commentId}`)
-      .then (response => {
-        setComments(comments.filter (data => data.id !==comments.id, response));
-      })
-      .catch(error=> console.log(error))
-  };
+  // const deleteComment = commentId => {
+  //   console.log(commentId)
+  //   axiosWithAuth()
+  //     .delete(`/comments`, {id: 24})
+  //     .then (response => {
+  //       console.log(response)
+  //     })
+  //     .catch(error=> console.log(error))
+  // };
 
   return (
-    <CommentContext.Provider value={{comments,deleteComment}}>
+    <CommentContext.Provider value={{comments}}>
       <div className="App">
         <PrivateRoute path={['/dashboard', '/search', '/saved']} component={Navigation} /> 
           <Switch>
-            <Route path = '/crud' component ={SaveComment} />
+            {/* <Route path = '/crud' component ={SaveComment} /> */}
             <Route exact path="/" component={Registration}/>
             <Route path="/login" component={Login} />
+            {/* <Route path = "/savedlist" component={SavedList}/> */}
             <PrivateRoute path="/dashboard" component={Dashboard} /> 
           </Switch>
       </div>

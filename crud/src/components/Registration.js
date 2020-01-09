@@ -2,6 +2,7 @@ import React from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {withRouter, Link} from 'react-router-dom';
 import {
+    Header,
     Wrapper, 
     Form, 
     Input, 
@@ -13,7 +14,7 @@ import {
 
 
 class Registration extends React.Component {
-    
+
     state = {
         credentials: {
             username: '',
@@ -37,8 +38,8 @@ class Registration extends React.Component {
             .then(response => {
                 console.log('kd:registration:login:axios:then', response.data)
                 localStorage.setItem('token', response.data.token);
-                localStorage.setItem('username', response.data.created_user.username); // when we register we can grab the users current username and send it to local storage to dsiplay in the app when we want
-                this.props.history.push('/dashboard'); // after the user registers it makes more sense for them to get directed straight to the dashboard rather than the login correct?
+                localStorage.setItem('username', response.data.created_user.username); 
+                this.props.history.push('/dashboard'); 
                 this.setState ({ credentials: {
                     username: '',
                     password: ''
@@ -52,6 +53,8 @@ class Registration extends React.Component {
     render() {
         
         return (
+            <>
+            <Header><h1>Salty Comment Membership</h1></Header>
             <Wrapper>
                 <Form onSubmit = {this.login}>
                     <Input
@@ -83,10 +86,9 @@ class Registration extends React.Component {
                         <SubTitle>Already registered? Click <Link to='/login'><NavLink>here</NavLink></Link> to login</SubTitle>
                     </Container>
                    
-                    
-
                 </Form>
             </Wrapper>
+            </>
         );
     }
     

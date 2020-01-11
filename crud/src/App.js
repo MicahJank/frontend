@@ -21,10 +21,8 @@ function App() {
       <div className="App">
         <PrivateRoute path={['/dashboard', '/search', '/saved']} component={Navigation} /> 
           <Switch>
-            {/* <Route path = '/crud' component ={SaveComment} /> */}
             <Route exact path="/" component={Registration}/>
             <Route path="/login" component={Login} />
-            {/* <Route path = "/savedlist" component={SavedList}/> */}
             <PrivateRoute path="/dashboard" component={Dashboard} /> 
           </Switch>
       </div>

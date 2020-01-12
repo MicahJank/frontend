@@ -3,7 +3,15 @@ import styled from "styled-components";
 import Card from './Card';
 import axios from "axios";
 
+import { PlaceHolderThree } from './PlaceHolder.js';
+
 import AliceCarousel from 'react-alice-carousel';
+
+
+const Container = styled.div`
+    margin: 70px;
+
+`;
 
 export default function SaltFeed() {
   const [feed, setFeed] = useState([]);
@@ -42,17 +50,25 @@ const stagePadding = {
   paddingRight: 50
 }
 
-  return (
-      <div className='carousel-container'>
-        <AliceCarousel
-          items={feed}
-          dotsDisabled={true}
-          duration={700}
-          responsive={itemBreakPoints}
-          buttonsDisabled={false}
-          slideToIndex={1}
-          stagePadding={stagePadding}
-        />
-      </div>
-  );
+  if(!feed.length) {
+    return (
+      <Container>
+        <PlaceHolderThree className='placeholder' />
+      </Container>
+    )
+  } else {
+    return (
+        <div className='carousel-container'>
+          <AliceCarousel
+            items={feed}
+            dotsDisabled={true}
+            duration={700}
+            responsive={itemBreakPoints}
+            buttonsDisabled={false}
+            slideToIndex={1}
+            stagePadding={stagePadding}
+          />
+        </div>
+    );
+  }
 }

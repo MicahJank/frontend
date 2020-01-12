@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import styled from "styled-components";
 import SaltFeed from './SaltFeed';
 import Login from './Login';
@@ -8,25 +8,10 @@ import UserSearch from './UserSearch.js';
 import HamburgerMenu from './HamburgerMenu.js';
 import SavedList from './SavedList';
 
+import { Menu, Segment } from 'semantic-ui-react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-
-const WrapperDiv = styled.div `
-display: flex;
-justify-content: center;
-justify-content: space-evenly;
-align-items: center;
-font-size: 1.4rem;
-padding: 15px;
-background-color: #FF6600;
-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-
-
-.hamburger {
-      position: absolute;
-      left: 45px;
-}
-`
+import { faBars, faSubway } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
 width: 100%;
@@ -34,30 +19,83 @@ display:flex;
 flex-direction: row;
 justify-content: space-around;
 align-items: center;
-`
-
-const Button = styled.button`
-      outline: none;
-      cursor: pointer;
-      border: none;
-      font-size: 2rem;
-      color: #FF6600;
 `;
 
-const Navigation = () => {
-      const [menu, setMenu] = useState(true);
+const NavBar = styled.div`
+
+      .navbar-menu {
+            display: flex;
+
+            .menu-left {
+                  display: flex;
+            }
+
+      }
+`;
+
+
+const Navigation = props => {
+      const [active, setActive] = useState('Salt Feed');
+
+      const handleClick = name => {
+            setActive(name);
+
+            switch(name) {
+                  case 'Salt Feed':
+                        props.history.push('/dashboard');
+                        break;
+                  
+                  case 'User Search':
+                        props.history.push('/search');
+                        break;
+                  
+                  case 'Saved':
+                        props.history.push('/saved');
+                        break;
+
+                  case 'logout':
+                        localStorage.clear();
+                        props.history.push('/login');
+                        break;
+                  
+                  default:
+                        props.history.push('/dashboard');
+            }
+            console.log(active);
+      }
 
   return (
-    <>
-    <WrapperDiv className = "NavWrap">    
-          <Button className='hamburger' onClick={() => setMenu(!menu)}><FontAwesomeIcon icon={faBars}/></Button>
-          <Link to ="/dashboard" style={{ textDecoration: 'none', color: 'white' }}>Salt Feed</Link>
-          <Link to ="/search" style={{ textDecoration: 'none' , color: 'white' }}>User Search </Link>
-          <Link to ="/saved" style={{ textDecoration: 'none' , color: 'white' }}>Saved </Link>
-    </WrapperDiv>
-      <HamburgerMenu hidden={menu} />
+      <>
+    <NavBar>
+      <Segment className='navbar-segment' color='orange' inverted>
+            <Menu className='navbar-menu' inverted secondary>
+                  <Menu.Item
+                        name='Salt Feed'
+                        active={active === 'Salt Feed'}
+                        onClick={() => handleClick('Salt Feed')}
+                  />
+                  <Menu.Item
+                        name='User Search'
+                        active={active === 'User Search'}
+                        onClick={() => handleClick('User Search')}
+                  />
+                  <Menu.Item
+                        name='Saved'
+                        active={active === 'Saved'}
+                        onClick={() => handleClick('Saved')}
+                  />
+                  <Menu.Item
+                        className='logout menu-right'
+                        position='right'
+                        name='logout'
+                        active={active === 'logout'}
+                        onClick={() => handleClick('logout')}
+                  />
+            </Menu>
+      </Segment>
 
 
+          </NavBar>
       <Container>
             <Route path ='/characters' component = {List} />
             <Route exact path ='/'component = {SaltFeed} />
@@ -65,7 +103,7 @@ const Navigation = () => {
             <Route path="/search" exact component={UserSearch} />
             <Route path="/saved" exact component={SavedList} />
       </Container>
-          </>
+      </>
    
   )};
 

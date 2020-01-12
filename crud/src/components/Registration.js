@@ -13,12 +13,17 @@ const Container = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 
+    h1 {
+        font-size: 3rem;
+        color: #FF6600;
+        }
+        
     .register-form {
         width: 20%;
-        margin: 0 auto 15%;
+        margin: 0 auto;
     }
 
     hr {
@@ -33,6 +38,8 @@ const Container = styled.div`
         height: auto;
         font-size: 1.3rem;
     }
+
+
     
 `;
 
@@ -56,7 +63,7 @@ const Registration = (props) => {
                 localStorage.setItem('username', response.data.created_user.username); 
                 clearForm();
                 setLoading(false);
-                // props.history.push('/dashboard'); 
+                props.history.push('/dashboard'); 
             })
                 .catch (error => {
                     setLoading(false);
@@ -113,7 +120,7 @@ const Registration = (props) => {
                     <br></br>
                    
                 </Form>
-                {responseError ? <Message error header='Unable to register' content={responseError} /> : ''}
+                {responseError ? <Message className='errorMessage' error header='Unable to register' content={responseError} /> : ''}
                     <div>
                         <div>Already registered? Click <Link to='/login'>here</Link> to login</div>
                     </div>

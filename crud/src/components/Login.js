@@ -52,8 +52,8 @@ export default function Login(props) {
     event.preventDefault();
     axiosWithAuth().post('/login', input)
     .then(res => {
-      console.log(res);
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('username', res.data.user.username); 
       clearForm();
       props.history.push('/dashboard');
     })
@@ -67,14 +67,16 @@ export default function Login(props) {
         <Form className='login-form' onSubmit={handleSubmit} >
           <Form.Input
             type="username"
-            value={input.username}
-            onChange={handleChange || ''}
+            name='username'
+            value={input.username || ''}
+            onChange={handleChange}
             placeholder='Username'
           />
           <Form.Input
-            value={input.password}
+            value={input.password || ''}
+            name='password'
             type="password"
-            onChange={handleChange || ''}
+            onChange={handleChange}
             placeholder='Password'
           />
           <div className='button-container'>

@@ -19,7 +19,13 @@ const Container = styled.div`
     h1 {
         font-size: 3rem;
         color: #FF6600;
+        margin: 0;
         }
+
+    h3 {
+        color: #e57d32;
+        margin: 0;
+    }
         
     .register-form {
         width: 20%;
@@ -78,7 +84,10 @@ const Registration = (props) => {
         
         return (
             <Container>
-            <h1>Hacker News Rankings</h1>
+            <div className='header'>
+                <h1>Hacker News Rankings</h1>
+                <h3>the saltiest place on the internet...</h3>
+            </div>
             <Form className='register-form' size='big' loading={loading} onSubmit={submitHandler}>
                     <Form.Input
                         error={errors.username}

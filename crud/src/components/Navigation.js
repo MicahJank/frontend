@@ -61,7 +61,6 @@ const Navigation = props => {
                   default:
                         props.history.push('/dashboard');
             }
-            console.log(active);
       }
 
   return (

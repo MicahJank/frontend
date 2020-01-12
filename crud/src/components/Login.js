@@ -1,57 +1,91 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
-// import styled from 'styled-components';
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "./Login.css";
+import useForm from '../hooks/useForm.js';
+
+import styled from 'styled-components';
+
+import { Form, Button, Checkbox } from 'semantic-ui-react';
 
 
+const Container = styled.div`
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .login-form {
+      width: 20%;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .login-button {
+      font-size: 1rem;
+      padding: 0;
+      width: 100px;
+    }
+
+
+    hr {
+      color: orange;
+      text-decoration: none;
+      border: 0.5px solid orange;
+      margin-bottom: 15px;
+  }
+
+  .register {
+    font-size: 1.4rem;
+  }
+`;
 
 export default function Login(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [input, handleChange, clearForm, errors] = useForm();
 
-  function validateForm() {
-    return username.length > 0 && password.length > 0;
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
-    axiosWithAuth().post('/login', {username, password})
+    axiosWithAuth().post('/login', input)
     .then(res => {
-      localStorage.setItem('token', res.data.token);
-      props.history.push('/dashboard');
       console.log(res);
-    });
-    console.log('Success!');
+      localStorage.setItem('token', res.data.token);
+      clearForm();
+      props.history.push('/dashboard');
+    })
+    .catch(error => {
+      console.log(error.response);
+    })
   }
 
   return (
-    <div className="Login">
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="username" bsSize="large">
-          <FormLabel>Username</FormLabel>
-          <FormControl
-            autoFocus
+    <Container>
+        <Form className='login-form' onSubmit={handleSubmit} >
+          <Form.Input
             type="username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            value={input.username}
+            onChange={handleChange || ''}
+            placeholder='Username'
           />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <FormLabel>Password</FormLabel>
-          <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+          <Form.Input
+            value={input.password}
             type="password"
+            onChange={handleChange || ''}
+            placeholder='Password'
           />
-        </FormGroup>
-        {/* <ButtonStyle> */}
-        <Button className="login" block bsSize="large" disabled={!validateForm()} type="submit">
-          Login
-        </Button>
-        {/* </ButtonStyle> */}
-      </form>
-    </div>
+          <div className='button-container'>
+          <Form.Input control={Checkbox} label='Remember me' />
+          <Button className='login-button' color='orange' type="submit">
+            Login
+          </Button>
+          </div>
+          <hr></hr>
+        </Form>
+          <div className='register'>Need to register an account? Click <Link to='/'>here</Link> to sign-up.</div>
+    </Container>
   );
 }

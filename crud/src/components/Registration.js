@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {withRouter, Link} from 'react-router-dom';
 
+// gql is what makes the queries
+import gql from 'graphql-tag';
+import { useMutation } from 'react-apollo';
+
 import { Form, Button, Message } from 'semantic-ui-react';
 
 import styled from 'styled-components';
 
 import useForm from '../hooks/useForm.js';
 
+// notice that making the query with gql is very similar to creating a component with styled components
+
+ 
 
 const Container = styled.div`
     height: 100vh;

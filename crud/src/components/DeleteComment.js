@@ -1,28 +1,37 @@
 import React, {useContext} from 'react';
 import CommentContext from './CommentContext'; 
+import styled from 'styled-components';
 
-function DeleteComment () {
+const Button = styled.button`
+    padding: 3px;
+    color: #e3e2e0;
+    border-radius:4px;
+    border: 2px solid black;
+    font-family:The Wild Hammers;
+
+    margin: 10px;
+    height: 35px;
+    display: flex;
+    align-items: baseline;
+    background-color: #454245;
+    
+    &:hover{
+        background: #a5c3c6;
+    }
+`;
+
+function DeleteComment (props) {
     const {comments, deleteComment} = useContext (CommentContext)
     console.log('kd:deletecomment:useContext', comments)
+    console.log(props.comment)
 
     return (
-        <>
-            {comments.map (comment => (
-                <div>
-                    <h3>Username: {comment.username}</h3>
-                    <br></br>
-                    <h3>Score: {comment.score}</h3>
-
-                    <button className = 'remove-comment-btn'
-                        onClick = {() => deleteComment (comment.id)}
-                        >
-                            Delete Comment
-                        </button>
-                        <hr></hr>
-                        <br></br>
-                </div>
-            ))}
-        </>
+        
+            <Button className = 'remove-comment-btn'
+                    onClick = {() => deleteComment (props.comment.id)}
+                    >Delete Comment
+            </Button>
+                
     )
 }
 

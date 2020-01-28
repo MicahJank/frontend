@@ -1,59 +1,88 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios'
 import Card from "./Card";
 import {Link} from "react-router-dom";
 import styled from 'styled-components';
 
+import { SearchContext } from '../contexts/SearchContext.js';
+
+import { Button, Form } from 'semantic-ui-react';
+
 const Wrapper = styled.div`
     margin-left: 25%;
     padding:1%;
+    margin-top: 20px;
+
+    button {
+        height: 53px;
+    }
+
+    .form {
+        width: 600px;
+        display: flex;
+
+    }
+
+    .field {
+        width: 100%;
+    }
+   
 `
 
-
-
 export default function SearchForm() {
-    const [data, setData] = useState([]);
-    const [query, setQuery] = useState("");
+    const { setComments, setAuthor } = useContext(SearchContext);
+    const [input, setInput] = useState('');
+    // const [query, setQuery] = useState("");
 
-    useEffect(()=>{
-    axios.get("https://rickandmortyapi.com/api/character/")
-    .then (response =>{
-        const characters = response.data.results.filter
-        (character => 
-        character.name.toLowerCase().includes(query.toLowerCase()));
-    setData (characters)});
-    },[query]);
 
 
 const handleInputChange = event => {
-  setQuery(event.target.value);
+  setInput(event.target.value);
 };
+
+const handleSubmit = () => {
+    axios.post("https://unit3-build-dummy-api.herokuapp.com/author", { author: input })
+    .then(res => {
+        console.log("TCL: SearchForm -> res", res)
+        setComments(res.data.top_ten_tox);
+        setAuthor({
+            name: res.data.author,
+            avg_toxicity: res.data.avg_tox,
+            rank: res.data.tox_rank
+        });
+
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
 return (
   <div >
     <Wrapper className ="form-style">
-    <form >
-      <input
-            id="name" 
-            type="text" 
-            name="textfield" 
-            placeholder="Search"
-            value={query} 
-            onChange={handleInputChange}/>
+    <Form onSubmit={handleSubmit} size='huge'>
+        <Form.Field>
+            <input
+                id="name" 
+                type="text" 
+                name="textfield" 
+                placeholder="Search"
+                value={input || ''} 
+                onChange={handleInputChange}/>
+        </Form.Field>
 
-
-    <Link to="/"><button>Home</button></Link>
-    </form>
+        <Button size='huge' primary type="submit">Search</Button>
+    </Form>
     </Wrapper>
 
-    {data.map((character => {
+    {/* {data.map((character => {
         return(
             <Card 
                 key={character.id} 
                 name={character.name} 
-                species={character.species} 
-                status={character.status}
+                comment={character.comment} 
+                toxicity={character.toxicity}
             />)
-    }))}
+    }))} */}
 
     </div>
 )}

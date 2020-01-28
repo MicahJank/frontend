@@ -1,87 +1,147 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
-import {withRouter} from 'react-router-dom';
-import {Wrapper, Form, Input, Button} from './styles/RegistrationStyles'; 
+import {withRouter, Link} from 'react-router-dom';
 
+// gql is what makes the queries
+import gql from 'graphql-tag';
+import { useMutation } from 'react-apollo';
 
-class Registration extends React.Component {
-    state = {
-        credentials: {
-            name: '',
-            email: '', 
-            password: ''
+import { Form, Button, Message } from 'semantic-ui-react';
+
+import styled from 'styled-components';
+
+import useForm from '../hooks/useForm.js';
+
+// notice that making the query with gql is very similar to creating a component with styled components
+
+ 
+
+const Container = styled.div`
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    h1 {
+        font-size: 3rem;
+        color: #FF6600;
+        margin: 0;
         }
-    }; 
 
-    handleChange = event => {
-        this.setState ({
-            credentials: {
-                ...this.setState.credentials,
-                [event.target.name]: event.target.value
-            }
-        });
-    };
+    h3 {
+        color: #e57d32;
+        margin: 0;
+    }
+        
+    .register-form {
+        width: 20%;
+        margin: 0 auto;
+    }
 
-    login = event => {
+    hr {
+        color: orange;
+        text-decoration: none;
+        border: 0.5px solid orange;
+        margin-bottom: 15px;
+    }
+
+    .register-button .ui.button {
+        padding: 10px;
+        height: auto;
+        font-size: 1.3rem;
+    }
+
+
+    
+`;
+
+const Registration = (props) => {
+
+    const [state, handleChange, clearForm, errors] = useForm();
+    const [responseError, setResponseError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+
+    const submitHandler = event => {
         event.preventDefault();
-        axiosWithAuth()
-            .post('https://hacker-news-troll.herokuapp.com/api/register', this.state.credentials)
+
+        if(state.username && state.email && state.password) {
+            setResponseError('');
+            setLoading(true);
+            axiosWithAuth()
+            .post('/register', state)
             .then(response => {
-                console.log('kd:registration:login:axios:then', response.data)
                 localStorage.setItem('token', response.data.token);
-                this.props.history.push('/login');
-                this.setState ({ credentials: {
-                    name: '',
-                    email: '',
-                    password: ''
-                }});
+                localStorage.setItem('username', response.data.created_user.username); 
+                clearForm();
+                setLoading(false);
+                props.history.push('/dashboard'); 
             })
-                .catch (error => console.log ('kd:registration:login:axios.catch', error));
+                .catch (error => {
+                    setLoading(false);
+                    setResponseError(error.response.data.message)
+                });
+        } else {
+            setResponseError('Please provide a username, email and password.');
+        }
+        
     };
 
-    render() {
+        
         return (
-            <Wrapper>
-                <Form onSubmit = {this.login}>
-                    <Input
+            <Container>
+            <div className='header'>
+                <h1>Hacker News Rankings</h1>
+                <h3>the saltiest place on the internet...</h3>
+            </div>
+            <Form className='register-form' size='big' loading={loading} onSubmit={submitHandler}>
+                    <Form.Input
+                        error={errors.username}
                         type = 'text'
-                        name = 'name'
-                        value = {this.state.credentials.name}
-                        onChange = {this.handleChange}
-                        placeholder = '* name'
+                        name = 'username'
+                        value = {state.username || ''}
+                        onChange = {handleChange}
+                        placeholder = '* username'
                         />
 
-                        <br></br>
-
-                    <Input
+                        <Form.Input
+                        error={errors.email}
                         type = 'email'
                         name = 'email'
-                        value = {this.state.credentials.email}
-                        onChange = {this.handleChange}
+                        value = {state.email || ''}
+                        onChange = {handleChange}
                         placeholder = '* email'
                         />
 
-                        <br></br>
 
-                    <Input
+
+                    <Form.Input
+                        error={errors.password}
                         type = 'password'
                         name = 'password'
-                        value = {this.state.credentials.password}
-                        onChange = {this.handleChange}
+                        value = {state.password || ''}
+                        onChange = {handleChange}
                         placeholder = '* password'
                         />
-                        <br></br>
-
-                    <Button 
+                        <hr></hr>
+                    <Form.Button
+                        className='register-button'
+                        color='orange' 
                         type = 'submit'
+                        size='massive'
                         >Register
-                        </Button>
+                    </Form.Button>
 
+                    <br></br>
+                   
                 </Form>
-            </Wrapper>
+                {responseError ? <Message className='errorMessage' error header='Unable to register' content={responseError} /> : ''}
+                    <div>
+                        <div>Already registered? Click <Link to='/login'>here</Link> to login</div>
+                    </div>
+            </Container>
         );
-    }
-    
 }
 
-export default withRouter (Registration);
+export default Registration;
